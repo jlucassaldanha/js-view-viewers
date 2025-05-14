@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font: normal 18pt Arial;
+    background: cornsilk;
+}
+
+header {
+    text-align: center;
+    background: blueviolet;
+    padding: 10px;
+}
+
+section {
+    min-height: 100vh;
+}
+
+div, main {
+   background: white;
+    border-radius: 10px;
+    padding: 15px;
+    width: 500px;
+    margin: auto;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.342);
+}
+
+footer {
+    min-height: 10px;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    background: black;
+}
+
