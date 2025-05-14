@@ -24,14 +24,14 @@ main {
 }
 
 div#modsTitle {
-    font: normal 10pt Arial;
+    font: normal 12pt Arial;
     padding-top: 5px;
     padding-bottom: 20px;
     margin: 5px;
 }
 
 div#viewersTitle {
-    font: normal 10pt Arial;
+    font: normal 12pt Arial;
     padding-top: 15px;
     padding-bottom: 20px;
     margin: 5px;
