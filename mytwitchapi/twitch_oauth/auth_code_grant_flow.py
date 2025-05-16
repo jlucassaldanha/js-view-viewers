@@ -1,6 +1,6 @@
 import os, json, requests, webbrowser, secrets
 
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 
 from wsgiref.simple_server import make_server
 from wsgiref.util import request_uri
@@ -55,23 +55,23 @@ class Credentials():
                     missing_keys.append(k)
             raise APIOAuthErrors("Credentials file missing keys: Verify for the missing keys.\n- Missing keys -> {}.\n- Read keys -> {}.".format(", ".join(missing_keys), ", ".join(list(creds_data))))
     
-    def read_credentials_dotenv(self) -> dict:
-        load_dotenv()
-        try:
-            self.client_id = os.environ["CLIENT_ID"]
-            self.client_secrets = os.environ["CLIENT_SECRETS"]
-            self.scopes = os.environ["SCOPES"]
-            self.redirect_uri = os.environ["REDIRECT_URI"]
+#    def read_credentials_dotenv(self) -> dict:
+#        load_dotenv()
+#        try:
+#            self.client_id = os.environ["CLIENT_ID"]
+#            self.client_secrets = os.environ["CLIENT_SECRETS"]
+#            self.scopes = os.environ["SCOPES"]
+#            self.redirect_uri = os.environ["REDIRECT_URI"]
             
-            return {
-                "client_id" : self.client_id,
-                "client_secrets" : self.client_secrets,
-                "scopes" : self.scopes,
-                "redirect_uri" : self.redirect_uri
-            }
+#            return {
+#                "client_id" : self.client_id,
+#                "client_secrets" : self.client_secrets,
+#                "scopes" : self.scopes,
+#                "redirect_uri" : self.redirect_uri
+#            }
 
-        except KeyError:
-            raise Exception(".env missing keys")
+#        except KeyError:
+#            raise Exception(".env missing keys")
             
     def _localServerApp(self, environ, start_response):
         """
