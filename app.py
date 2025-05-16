@@ -14,5 +14,10 @@ def contatos():
 def views():
     return render_template("index.html")
 
+@app.route("/teste")
+def teste():
+    user = "Teste"
+    return render_template("teste.html", user=user)
+
 if __name__ == "__main__":
     app.run()
