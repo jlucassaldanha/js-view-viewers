@@ -1,4 +1,5 @@
 from mytwitchapi.creds_flow import OAuth
+from mytwitchapi.twich_api_client import Basics
 
 def oauth():
     auth = OAuth()

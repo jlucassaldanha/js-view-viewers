@@ -62,14 +62,14 @@ class Credentials():
 #            self.client_secrets = os.environ["CLIENT_SECRETS"]
 #            self.scopes = os.environ["SCOPES"]
 #            self.redirect_uri = os.environ["REDIRECT_URI"]
-            
+#            
 #            return {
 #                "client_id" : self.client_id,
 #                "client_secrets" : self.client_secrets,
 #                "scopes" : self.scopes,
 #                "redirect_uri" : self.redirect_uri
 #            }
-
+#
 #        except KeyError:
 #            raise Exception(".env missing keys")
             

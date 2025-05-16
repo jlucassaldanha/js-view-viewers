@@ -19,7 +19,7 @@ for (let p = 6; p < 9; p++) {
     mods.appendChild(div)
 
     let img = document.createElement("img")
-    img.src = `pessoa${p}.jpg`
+    img.src = `static/pessoa${p}.jpg`
     img.alt = `pessoa${p}`
 
     div.appendChild(img)
@@ -47,7 +47,7 @@ for (let p = 1; p < 7; p++) {
     viewers.appendChild(div)
 
     let img = document.createElement("img")
-    img.src = `pessoa${p}.jpg`
+    img.src = `static/pessoa${p}.jpg`
     img.alt = `pessoa${p}`
 
     div.appendChild(img)

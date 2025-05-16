@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
     https://dashboard.twitch.tv/popout/u/ojoojao/stream-manager/active-mods?uuid=44323affcb35083c5802f0dd6f7a48ed
     --->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
@@ -48,7 +48,7 @@
 
     </main>
     
-    <script src="src.js"></script>
+    <script src="/static/src.js"></script>
 
 </body>
 </html>
