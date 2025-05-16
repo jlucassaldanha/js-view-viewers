@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
     https://dashboard.twitch.tv/popout/u/ojoojao/stream-manager/active-mods?uuid=44323affcb35083c5802f0dd6f7a48ed
     --->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
@@ -21,37 +21,26 @@
         <section id="mods">
             
             <div id="modsTitle">
-                <p>2 de 9 mods</p>
+                <p id="userMods"></p>
             </div>
 
-            <section id="modsUsers">
-                <!---<div id="user1">
-                    <img src="profile.png" alt=".">
-                    <span>•</span>
-                    <a href=""><strong>ojoojao</strong></a>
-                </div>--->
-            </section>
+            <section id="modsUsers"></section>
 
         </section>
 
         <section id="viewers">
             
             <div id="viewersTitle">
-                <p>6 viewers</p>
+                <p id="userViews"></p>
             </div>
 
-            <section id="viewersUsers">
-                
-            </section>
+            <section id="viewersUsers"></section>
 
         </section>
 
     </main>
     
-    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
-    <script type="text/javascript">
-        init()
-    </script>
+    <script src="/static/script.js"></script>
 
 </body>
 </html>
