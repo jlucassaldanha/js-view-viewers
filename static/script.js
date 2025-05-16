@@ -67,5 +67,3 @@ function init() {
 
 }
 */
-
-function
