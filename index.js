@@ -66,31 +66,34 @@ for (let p = 1; p < 7; p++) {
 }
 */
 
+var res = document.getElementById("r")
+
+var users = ["ojoojao"]
+var broadcaster_id = "459116718"
+var moderator_id = broadcaster_id
+
 async function get_users() {
+    let token_json = await fetch('token.json')   
+    token_data = await token_json.json()
 
-    //var token_j = fetch('token.json').then(token_r => {return token_r.json()}).then(data_t => {return data_t.access_token})
-    
-    //var cred_j = fetch('credentials.json').then(cred_r => {return cred_r.json()}).then(data_c => {return data_c.client_id})
+    let cred_json = await fetch('credentials.json')
+    creds_data = await cred_json.json()
 
-    var token_j = await fetch('token.json')
-    var token_jd = await token_j.json()
-    
-    var cred_j = await fetch('credentials.json')
-    var cred_jd = await cred_j.json()
+    let client_id = creds_data.client_id
+    let token = token_data.access_token
 
-    var client_id = cred_jd.client_id
-    var token = token_jd.access_token
-    
-    console.log(cred_jd.client_id)
-    console.log(token_jd.access_token)
-    
+    console.log(client_id)
+    console.log(token)
 
     let params = new URLSearchParams()
-    params.append("login", "ojoojao")
+
+    for (let i = 0; i < users.length; i++) {
+        params.append("login", users[i])
+    }
     
     let url = `https://api.twitch.tv/helix/users?${params}`
     
-    var r = await fetch(url, {
+    let r = await fetch(url, {
         method: "GET",
         headers: {
             "Authorization": `Bearer ${token}`,
@@ -98,12 +101,47 @@ async function get_users() {
         }
     })
 
-    let _r = document.getElementById("r")
+    var response_json = await r.json()
 
-    var rr = await r.json()
+    res.innerHTML = response_json.data[0]
+    console.log(response_json.data[0])
 
-    _r.innerHTML = rr.data[0].id
-    console.log(rr.data[0].id)
+    get_chatters()
+}
 
+async function get_chatters() {
+    let token_json = await fetch('token.json')   
+    token_data = await token_json.json()
+
+    let cred_json = await fetch('credentials.json')
+    creds_data = await cred_json.json()
+
+    let client_id = creds_data.client_id
+    let token = token_data.access_token
+
+    console.log(client_id)
+    console.log(token)
+
+    let params = new URLSearchParams()
+
+    params.append("broadcaster_id", broadcaster_id)
+    params.append("moderator_id", moderator_id)
+    
+    
+    let url = `https://api.twitch.tv/helix/chat/chatters?${params}`
+    
+    let r = await fetch(url, {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            'Client-Id': client_id,
+        }
+    })
+
+    var response_json = await r.json()
+
+    res.innerHTML = response_json.data
+    
+    console.log(response_json.data)
 }
 
