@@ -1,4 +1,5 @@
 from flask import Flask, render_template, make_response, jsonify
+from mytwitchapi import Basics, OAuth
 
 app = Flask(__name__)
 
@@ -7,14 +8,27 @@ def home():
     return "API HOME"
 
 @app.route("/api/credentials", methods=["GET"])
-def credentials():
+def get_secrets():
+    auth = OAuth()
+
+    auth.credentials("credentials.json")
+    auth.access_token("token.json")
+
     data = {
-        "data": "Sem dados"
+        "token" : auth.token,
+        "client_id" : auth.client_id,
+        "scopes" : auth.scopes
     }
+
     return make_response(jsonify(data))
 
-@app.route("/api/get_users", methods=["GET"])
+@app.route("/api/get_users/<data>", methods=["GET"])
 def get_users():
+    
+    
+    api = Basics(auth.client_id, auth.token, auth.scopes)
+
+    api.Get_Users()
     data = {
         "data": "Sem dados"
     }
