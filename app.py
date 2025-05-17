@@ -35,12 +35,12 @@ def get_users():
     if request.args.get('id') == None:
         logins = request.args.getlist('login')
 
-        r = api.Get_Users(logins)
+        r = api.Get_Users(logins=logins)
 
     elif request.args.get('login') == None:
         ids = request.args.getlist('id')
 
-        r = api.Get_Users(ids)
+        r = api.Get_Users(ids=ids)
     
     data = {
         "data": r
@@ -99,22 +99,23 @@ def get_viewers_on():
 
     chatters = api.Get_Chatters(broadcaster_id, moderator_id)
 
-    viewers_ids = [chatter['user_id'] for chatter in chatters]
+    all_viewers_ids = [chatter['user_id'] for chatter in chatters]
     viewers_users = [chatter['user_name'] for chatter in chatters]
 
-    mods = api.Get_Moderators(broadcaster_id, viewers_ids)
+    mods = api.Get_Moderators(broadcaster_id, all_viewers_ids)
     
     mods_users = [mod['user_name'] for mod in mods]
     viewers_users = list(set(viewers_users) - set(mods_users))
 
     #viewers = [c for c in chatters if c["user_name"] != "ojoojao" and c["user_name"] != "Nightbot" and c["user_name"] != "StreamElements"]
 
-    viewers_count = str(len(chatters))
+    viewers_count = str(len(all_viewers_ids))
 
     data = {
         "mods": mods_users,
         "viewers" : viewers_users,
-        "count" : viewers_count 
+        "count" : viewers_count,
+        "all_viewers_ids" : all_viewers_ids
     }
     
     return make_response(jsonify(data))

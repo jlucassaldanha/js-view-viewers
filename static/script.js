@@ -66,36 +66,14 @@ function init() {
     }
 
 }
-    let secrets = creds()
-
-    let token = secrets[1]
-    let client_id = secrets[0]
-    let scopes = secrets[2]
-    
-    let base_url = "http://127.0.0.1:5000/api/"
-    let request_type = "get_viewers_on"
-    let secrets_params = `client_id=${client_id}&token=${token}&scopes=${scopes}`
-    
-    //let request_type = "get_users"
-    //let query_params = `login=ojoojao`
-    //let data = Get(`${base_url}${request_type}?${secrets_params}&${query_params}`)
-    //let broadcaster_id = JSON.parse(data).data[0].id
-    
-
-    let broadcaster_id = 459116718
-    query_params = `broadcaster_id=${broadcaster_id}&moderator_id=${broadcaster_id}`
-    
-    data = Get(`${base_url}${request_type}?${secrets_params}&${query_params}`)
-
-    let viewers_on = JSON.parse(data)
-    
-    console.log(viewers_on)
 */
+var base_url = "http://127.0.0.1:5000/api/"
 
 var token = null
 var client_id = null
 var scopes = null
 var viewers_on = null
+var users_info = null
 
 function Get(url) {
     let request = new XMLHttpRequest()
@@ -106,40 +84,73 @@ function Get(url) {
 }
 
 function creds() {
-    let data = Get("http://127.0.0.1:5000/api/credentials")
-    let secrets = JSON.parse(data)
+    let secrets = JSON.parse(Get(`${base_url}credentials`))
 
     client_id = secrets.client_id
     token = secrets.token
     scopes = secrets.scopes
 
-    console.log(client_id, token, scopes)
-
     return [secrets.client_id, secrets.token, secrets.scopes]
 }
 
-function get_viewers_on() {
-    let base_url = "http://127.0.0.1:5000/api/"
-    let request_type = "get_viewers_on"
+function get_viewers() {
     let secrets_params = `client_id=${client_id}&token=${token}&scopes=${scopes}`
 
     let broadcaster_id = 459116718
-    query_params = `broadcaster_id=${broadcaster_id}&moderator_id=${broadcaster_id}`
-    
-    data = Get(`${base_url}${request_type}?${secrets_params}&${query_params}`)
+    let query_params = `broadcaster_id=${broadcaster_id}&moderator_id=${broadcaster_id}`
 
-    viewers_on = JSON.parse(data)
-    
-    console.log(viewers_on)
+    viewers_on = JSON.parse(
+        Get(`${base_url}get_viewers_on?${secrets_params}&${query_params}`)
+    )
 
     return viewers_on
 }
 
+function get_users(ids) {
+    let secrets_params = `client_id=${client_id}&token=${token}&scopes=${scopes}`
+
+    let query_params = `id=${ids[0]}`
+    ids = ids.slice(1)
+
+    for (let id in ids) {
+        query_params += `&id=${ids[id]}`
+    }
+
+    users_info = JSON.parse(
+        Get(`${base_url}get_users?${secrets_params}&${query_params}`)
+    )
+
+    return users_info
+}
 
 function main() {
-    window.setInterval(creds(), 600000)
+    let inicio_creds = new Date().getTime()
+    creds()
+
+    let inicio = new Date().getTime()
+    get_viewers()
+    //console.log(viewers_on)
+    //console.log(viewers_on.all_viewers_ids)
+    get_users(viewers_on.all_viewers_ids)
+    console.log(users_info.data)
+
+    while (true) {
+        if ((new Date().getTime() - inicio_creds) > 10000) {
+            inicio_creds = new Date().getTime()
+            creds()
+        }
+
+        if ((new Date().getTime() - inicio) > 5000) {
+            inicio = new Date().getTime()
+            get_viewers()
+            //console.log(viewers_on)
+            //console.log(viewers_on.all_viewers_ids)
+            get_users(viewers_on.all_viewers_ids)
+            console.log(users_info.data)
+        }
     
-    window.setInterval(get_viewers_on(), 300000)
+    }
+    
 }
 
 main()
