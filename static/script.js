@@ -10,7 +10,7 @@ var token = null
 var client_id = null
 var scopes = null
 
-//var viewers_on = null
+var nunca = true
 
 function Get(url) {
     let request = new XMLHttpRequest()
@@ -85,21 +85,30 @@ function show(users, mod_or_user) {
     }
 }
 
-function main() {
-    let inicio_creds = new Date().getTime()
-    creds()
-
-    let inicio = new Date().getTime()
+function show_espectadores() {
     let viewers_on = get_viewers()
 
     document.getElementById("especs").innerHTML = `<strong>Espectadores totais: ${viewers_on.count}</strong>`
 
     show(viewers_on.mods, "mod")
     show(viewers_on.viewers, "user")
+}
 
-    //console.log(viewers_on)
-/*
-    while (true) {
+function main() {
+    let inicio_creds = null
+    let inicio = null
+    
+    
+    if (nunca) {
+        inicio_creds = new Date().getTime()
+        creds()
+
+        inicio = new Date().getTime()
+        show_espectadores()
+
+        nunca = false
+
+    } else {
         if ((new Date().getTime() - inicio_creds) > 600000) {
             inicio_creds = new Date().getTime()
             creds()
@@ -107,17 +116,11 @@ function main() {
 
         if ((new Date().getTime() - inicio) > 60000) {
             inicio = new Date().getTime()
-            viewers_on = get_viewers()
-            //console.log(viewers_on)
-
-            //document.getElementById("especs").innerHTML = `<strong>Espectadores totais: ${viewers_on.count}</strong>`
-
-            show(viewers_on.mods, "mod")
-            show(viewers_on.viewers, "user")
+            show_espectadores
         }
-    
+        
     }
-    */
+    
 }
 
 main()
