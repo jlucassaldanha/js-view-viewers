@@ -7,7 +7,7 @@ def oauth():
     auth.credentials("credentials.json")
     auth.access_token("token.json")
 
-def get_viewers():
+def get_viewers(client_id, token, scopes):
     global viewers_count, viewers_txt, mods_txt
     ojoojao_id = "459116718"
     

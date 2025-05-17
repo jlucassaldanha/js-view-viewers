@@ -1,0 +1,15 @@
+{
+    "access_token": "ccccccccccccccccccccccccccccccc",
+    "expires_in": 15609,
+    "refresh_token": "ddddddddddddddddddddddddddddddddddd",
+    "scope": [
+        "channel:read:vips",
+        "clips:edit",
+        "moderation:read",
+        "moderator:read:chatters",
+        "user:read:email",
+        "user:read:follows",
+        "user:write:chat"
+    ],
+    "token_type": "bearer"
+}
