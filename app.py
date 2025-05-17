@@ -107,15 +107,18 @@ def get_viewers_on():
     mods_users = [mod['user_name'] for mod in mods]
     viewers_users = list(set(viewers_users) - set(mods_users))
 
-    #viewers = [c for c in chatters if c["user_name"] != "ojoojao" and c["user_name"] != "Nightbot" and c["user_name"] != "StreamElements"]
-
     viewers_count = str(len(all_viewers_ids))
 
+    users_mods = api.Get_Users(mods_users)
+    mods_info = [{"username" : user_mod['display_name'], "id" : user_mod['id'] , "profile_img_url" : user_mod['profile_image_url']} for user_mod in users_mods]
+
+    users_viewers = api.Get_Users(viewers_users)
+    viewers_info = [{"username" : user_viewer['display_name'], "id" : user_viewer['id'],"profile_img_url" : user_viewer['profile_image_url']} for user_viewer in users_viewers]
+
     data = {
-        "mods": mods_users,
-        "viewers" : viewers_users,
+        "mods": mods_info,
+        "viewers" : viewers_info,
         "count" : viewers_count,
-        "all_viewers_ids" : all_viewers_ids
     }
     
     return make_response(jsonify(data))

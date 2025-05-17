@@ -23,6 +23,13 @@ main {
     padding-right: 30px;
 }
 
+section#espectadores {
+    font: normal 12pt Arial;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    margin: 5px;
+}
+
 div#modsTitle {
     font: normal 12pt Arial;
     padding-top: 5px;
@@ -71,5 +78,9 @@ a {
 }
 
 strong {
+    color: rgb(255, 111, 111);
+}
+
+strong#user {
     color: rgb(188, 132, 241);
 }
