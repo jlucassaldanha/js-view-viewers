@@ -38,7 +38,7 @@ function show(users, mod_or_user) {
     }
 
     for (let user in users) {
-        if (document.getElementById(`user_${users[user].id}`) != null) {
+        if (document.getElementById(`user_${users[user].id}`) == null) {
             let div = document.createElement('div')
 
             div.id = `user_${users[user].id}`
