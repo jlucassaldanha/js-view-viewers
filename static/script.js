@@ -79,7 +79,7 @@ function show_espectadores() {
         Get(`${base_url}get_viewers_on?${secrets_params}&${query_params}`)
     )
 
-    document.getElementById("especs").innerHTML = `<strong>Espectadores totais: ${viewers_on.count}</strong>`
+    document.getElementById("especs").innerHTML = `${viewers_on.count} Espectadores totais`
 
     show(viewers_on.mods, "mod")
     show(viewers_on.viewers, "user")

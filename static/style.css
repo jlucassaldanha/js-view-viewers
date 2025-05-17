@@ -2,19 +2,19 @@
 
 * {
     
-    color: rgb(221, 221, 221);
+    color: #EFEFF1;
     margin: 0px;
     padding: 0px;
 }
 
 body {
-    background: rgb(31, 31, 31);
+    background: #18181B;
 }
 
 header {
     font: normal 9pt Arial;
     padding: 7px 7px 7px 12px;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.377);
+    box-shadow: 0px 1px 2px black;
 }
 
 main {
@@ -25,23 +25,64 @@ main {
 
 section#espectadores {
     font: normal 12pt Arial;
-    padding-top: 15px;
-    padding-bottom: 20px;
-    margin: 5px;
+    margin-top: 15px;
+    margin-left: 5px;
+    display: flex;
+
 }
 
-div#modsTitle {
-    font: normal 12pt Arial;
-    padding-top: 5px;
-    padding-bottom: 20px;
-    margin: 5px;
+div#especs {
+    display: flex;
 }
 
-div#viewersTitle {
+path {
+    fill: #EFEFF1;
+}
+
+svg {
+    border-radius: 30%;
+}
+
+p#especs {
+    color: rgb(170, 62, 62);
+    padding-left: 10px;
+    margin-top: 2px;
+}
+
+div#modsTitle, div#viewersTitle {
+    background: #1F1F23;
     font: normal 12pt Arial;
-    padding-top: 15px;
-    padding-bottom: 20px;
-    margin: 5px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 5px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    display: flex;
+    height: 20px;
+}
+
+path#mod_path {
+    fill: green;
+}
+
+svg {
+    border-radius: 25%;
+}
+
+div#mod_logo{
+    height: 20px;
+    width: 20px;
+    border-radius: 25%;
+    background: #EFEFF1;
+}
+
+p#userMods, p#userViews {
+    padding-left: 10px;
+    margin-top: 2px;
+}
+
+path#especs_logo {
+    fill: rgb(170, 62, 62);
 }
 
 div.user1 {
@@ -50,15 +91,17 @@ div.user1 {
     align-items: center;
     font: normal 12pt Arial;
     display: flex;
+    margin-left: 10px;
 }
 
 div.user {
-    border-top: 1px solid rgba(83, 83, 95, 0.48);
+    border-top: 1px solid #35353B;
     padding-top: 10px;
     padding-bottom: 10px;
     align-items: center;
     font: normal 12pt Arial;
     display: flex;
+    margin-left: 10px;
 }
 
 img {
@@ -77,10 +120,6 @@ a {
     font: normal 11pt Arial;
 }
 
-strong {
-    color: rgb(255, 111, 111);
-}
-
 strong.user {
-    color: rgb(188, 132, 241);
+    color: #BE93FE;
 }
