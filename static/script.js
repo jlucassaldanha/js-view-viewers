@@ -66,4 +66,80 @@ function init() {
     }
 
 }
+    let secrets = creds()
+
+    let token = secrets[1]
+    let client_id = secrets[0]
+    let scopes = secrets[2]
+    
+    let base_url = "http://127.0.0.1:5000/api/"
+    let request_type = "get_viewers_on"
+    let secrets_params = `client_id=${client_id}&token=${token}&scopes=${scopes}`
+    
+    //let request_type = "get_users"
+    //let query_params = `login=ojoojao`
+    //let data = Get(`${base_url}${request_type}?${secrets_params}&${query_params}`)
+    //let broadcaster_id = JSON.parse(data).data[0].id
+    
+
+    let broadcaster_id = 459116718
+    query_params = `broadcaster_id=${broadcaster_id}&moderator_id=${broadcaster_id}`
+    
+    data = Get(`${base_url}${request_type}?${secrets_params}&${query_params}`)
+
+    let viewers_on = JSON.parse(data)
+    
+    console.log(viewers_on)
 */
+
+var token = null
+var client_id = null
+var scopes = null
+var viewers_on = null
+
+function Get(url) {
+    let request = new XMLHttpRequest()
+    request.open("GET", url, false)
+    request.send()
+
+    return request.responseText
+}
+
+function creds() {
+    let data = Get("http://127.0.0.1:5000/api/credentials")
+    let secrets = JSON.parse(data)
+
+    client_id = secrets.client_id
+    token = secrets.token
+    scopes = secrets.scopes
+
+    console.log(client_id, token, scopes)
+
+    return [secrets.client_id, secrets.token, secrets.scopes]
+}
+
+function get_viewers_on() {
+    let base_url = "http://127.0.0.1:5000/api/"
+    let request_type = "get_viewers_on"
+    let secrets_params = `client_id=${client_id}&token=${token}&scopes=${scopes}`
+
+    let broadcaster_id = 459116718
+    query_params = `broadcaster_id=${broadcaster_id}&moderator_id=${broadcaster_id}`
+    
+    data = Get(`${base_url}${request_type}?${secrets_params}&${query_params}`)
+
+    viewers_on = JSON.parse(data)
+    
+    console.log(viewers_on)
+
+    return viewers_on
+}
+
+
+function main() {
+    window.setInterval(creds(), 600000)
+    
+    window.setInterval(get_viewers_on(), 300000)
+}
+
+main()
