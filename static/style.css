@@ -44,7 +44,7 @@ div#viewersTitle {
     margin: 5px;
 }
 
-div#user1 {
+div.user1 {
     padding-top: 10px;
     padding-bottom: 10px;
     align-items: center;
@@ -52,7 +52,7 @@ div#user1 {
     display: flex;
 }
 
-div#user {
+div.user {
     border-top: 1px solid rgba(83, 83, 95, 0.48);
     padding-top: 10px;
     padding-bottom: 10px;
@@ -81,6 +81,6 @@ strong {
     color: rgb(255, 111, 111);
 }
 
-strong#user {
+strong.user {
     color: rgb(188, 132, 241);
 }

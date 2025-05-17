@@ -110,10 +110,14 @@ def get_viewers_on():
     viewers_count = str(len(all_viewers_ids))
 
     users_mods = api.Get_Users(mods_users)
-    mods_info = [{"username" : user_mod['display_name'], "id" : user_mod['id'] , "profile_img_url" : user_mod['profile_image_url']} for user_mod in users_mods]
+    mods_info = [{"username" : user_mod['display_name'], 
+                  "id" : user_mod['id'] , 
+                  "profile_img_url" : user_mod['profile_image_url']} for user_mod in users_mods]
 
     users_viewers = api.Get_Users(viewers_users)
-    viewers_info = [{"username" : user_viewer['display_name'], "id" : user_viewer['id'],"profile_img_url" : user_viewer['profile_image_url']} for user_viewer in users_viewers]
+    viewers_info = [{"username" : user_viewer['display_name'], 
+                     "id" : user_viewer['id'],
+                     "profile_img_url" : user_viewer['profile_image_url']} for user_viewer in users_viewers]
 
     data = {
         "mods": mods_info,
