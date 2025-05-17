@@ -49,6 +49,14 @@ p#especs {
     margin-top: 2px;
 }
 
+details > summary {
+    list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+    display: none;
+}
+
 div#modsTitle, div#viewersTitle {
     background: #1F1F23;
     font: normal 12pt Arial;
