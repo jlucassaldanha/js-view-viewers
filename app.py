@@ -135,7 +135,6 @@ def views():
  
 
 if __name__ == "__main__":
-    #create_app().run()
     from waitress import serve
 
     serve(app, host="localhost", port=5000)

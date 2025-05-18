@@ -1,9 +1,3 @@
-/*
-https://pythonve.ikitai.net/entry/2024/10/04/040000
-https://medium.com/@fauzik354313/building-website-using-flask-html-javascript-and-python-study-case-791e336265f2
-https://medium.com/@wiliansilva/comunica%C3%A7%C3%A3o-com-python-utilizando-node-js-bafaf6cd1b59
-*/
-
 function Get(url) {
     let request = new XMLHttpRequest()
     request.open("GET", url, false)
