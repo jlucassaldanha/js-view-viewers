@@ -1,6 +1,7 @@
 from flask import Flask, render_template, make_response, jsonify, request
 from mytwitchapi import Basics, OAuth
 
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -111,13 +112,13 @@ def get_viewers_on():
 
     users_mods = api.Get_Users(mods_users)
     mods_info = [{"username" : user_mod['display_name'], 
-                  "id" : user_mod['id'] , 
-                  "profile_img_url" : user_mod['profile_image_url']} for user_mod in users_mods]
+                "id" : user_mod['id'] , 
+                "profile_img_url" : user_mod['profile_image_url']} for user_mod in users_mods]
 
     users_viewers = api.Get_Users(viewers_users)
     viewers_info = [{"username" : user_viewer['display_name'], 
-                     "id" : user_viewer['id'],
-                     "profile_img_url" : user_viewer['profile_image_url']} for user_viewer in users_viewers]
+                    "id" : user_viewer['id'],
+                    "profile_img_url" : user_viewer['profile_image_url']} for user_viewer in users_viewers]
 
     data = {
         "mods": mods_info,
@@ -131,6 +132,11 @@ def get_viewers_on():
 def views():
     return render_template("index.html")
 
+ 
+
 if __name__ == "__main__":
-    app.run()
+    #create_app().run()
+    from waitress import serve
+
+    serve(app, host="localhost", port=5000)
 

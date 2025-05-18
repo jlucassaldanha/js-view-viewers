@@ -85,7 +85,7 @@ function show_espectadores() {
     show(viewers_on.viewers, "user")
 }
 
-var base_url = "http://127.0.0.1:5000/api/"
+var base_url = "http://localhost:5000/api/"
 
 var token = null
 var client_id = null
