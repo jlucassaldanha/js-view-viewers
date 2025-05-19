@@ -59,6 +59,36 @@ function show(users, mod_or_user) {
     }
 }
 
+function verify_for_clean(users, mod_or_user) {
+    if (mod_or_user == "mod") {
+        for (let user in updateUsers.mods) {
+            
+            if (users.indexOf(updateUsers.mods[user]) == -1) {
+                clean_ids.push(updateUsers.mods[user].id)
+            } 
+        }
+
+        updateUsers.mods = users
+    } else if (mod_or_user == "user") {
+        for (let user in updateUsers.viewers) {
+            
+            if (users.indexOf(updateUsers.viewers[user]) == -1) {
+                clean_ids.push(updateUsers.viewers[user].id)
+            } 
+        }
+
+        updateUsers.viewers = users
+    }
+
+}
+
+function clean(ids) {
+    for (id in ids) {
+        let clean_div = document.getElementById(ids[id])
+    }
+    
+}
+
 function show_espectadores() {
     let secrets_params = `client_id=${client_id}&token=${token}&scopes=${scopes}`
 
@@ -74,6 +104,13 @@ function show_espectadores() {
     show(viewers_on.mods, "mod")
     show(viewers_on.viewers, "user")
 }
+
+var updateUsers = {
+    "mods" : [],
+    "viewers" : []
+}
+
+var clean_ids = []
 
 var base_url = "http://localhost:5000/api/"
 
