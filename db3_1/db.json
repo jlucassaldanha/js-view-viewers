@@ -1,0 +1,21 @@
+{
+    "mods_info": [
+        {
+            "username": "ojoojao",
+            "id": "123456",
+            "profile_img_url": ""
+        },
+        {
+            "username": "testerkk",
+            "id": "654321",
+            "profile_img_url": ""
+        }
+    ],
+    "viewers_info": [
+        {
+            "username": "nightbot",
+            "id": "333444",
+            "profile_img_url": ""
+        }
+    ]
+}
