@@ -141,8 +141,10 @@ def saved_viewers():
         data = request.json
 
         with open("viewers.json", "w", encoding="UTF-8") as json_file:
-            json.dump(data, json_file, indent=4)
+            json.dump(data, json_file, indent=4, ensure_ascii=False)
         json_file.close()
+
+        return make_response(jsonify(data))
 
     elif request.method == "GET":
         with open("viewers.json", "r", encoding="UTF-8") as json_file:

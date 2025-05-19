@@ -1,9 +1,25 @@
-import requests
+import requests, json
 
-url = "http://127.0.0.1:5000/api/get_users?client_id=aaaaa&token=bbbbbbbb&scopes=ccccccccc&login=1&login=2&login=3"
+url = "http://localhost:5000/api/saved_viewers"
 
-r = requests.get(url)
-print(r.status_code)
-print(r.json())
+dt = {
+    "mods": [{
+        "nome": "1"
+    }],
+    "viewers": [{
+        "nome": "2"
+    }]
+}
 
-input("Aperte enter para sair")
+#r = requests.post(url, json=dt)
+#print(r.status_code)
+
+#r = requests.get(url)
+#print(r.status_code)
+#print(r.json())
+
+#input("Aperte enter para sair")
+
+
+with open("teste.json", "w", encoding="utf-8") as file:
+    json.dump({"nome":"João"}, file, indent=4, ensure_ascii=False)
