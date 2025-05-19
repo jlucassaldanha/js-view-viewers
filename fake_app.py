@@ -133,15 +133,30 @@ def get_viewers_on():
     
     return make_response(jsonify(data))
 
+# A ideia é ao mostrar usuarios no site, ele deve salvar os dados em um arquivo json com os usuarios que foram mostrados, para que então toda vez que seja pego novos dados poder comparar se houve alguma mudança de usuarios
+
+@app.route("/api/saved_viewers", methods=['POST', "GET"])
+def saved_viewers():
+    if request.method == "POST":
+        data = request.json
+
+        with open("viewers.json", "w", encoding="UTF-8") as json_file:
+            json.dump(data, json_file, indent=4)
+        json_file.close()
+
+    elif request.method == "GET":
+        with open("viewers.json", "r", encoding="UTF-8") as json_file:
+            data = json.load(json_file)
+        json_file.close()
+
+        return make_response(jsonify(data))
+
 @app.route("/views")
 def views():
-    return render_template("index.html")
-
- 
+    return render_template("index.html") 
 
 if __name__ == "__main__":
     app.run()
     #from waitress import serve
 
     #serve(app, host="localhost", port=5000)
-

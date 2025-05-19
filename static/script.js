@@ -37,11 +37,7 @@ function show(users, mod_or_user) {
 
             div.id = `user_${users[user].id}`
 
-            if (user == 0) {
-                div.className = "user1"
-            } else {
-                div.className = "user"
-            }
+            div.className = "user"
             section.appendChild(div)
             
             // div
