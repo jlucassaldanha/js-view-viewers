@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        #mydiv {
+        #popup_user {
             display: none;
             position: absolute;
             z-index: 9;
@@ -14,7 +14,7 @@
             text-align: center;
         }
 
-        #mydivheader {
+        #popup_userheader {
             padding: 10px;
             cursor: move;
             z-index: 10;
@@ -23,9 +23,7 @@
         }
 
         /* Popup container */
-        
-
-        .popup {
+        #link_user {
             position: relative;
             cursor: pointer;
         }
@@ -38,48 +36,45 @@
     </style>
 </head>
 <body>
-    <div class="popup" id="popup" onclick="myFunction()">
+    <div id="link_user" onclick="openPopup()">
         Click me!
-        
-        
     </div>
     <!-- Draggable DIV -->
-         <div id="mydiv">
+         <div id="popup_user">
             <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
-            <div id="mydivheader">Click here to move</div>
+            <div id="popup_userheader">Click here to move</div>
             <p>Move</p>
             <p>this</p>
             <p>DIV</p>
-            <p class="close" id="close" onclick="closepopup()">close</p>
+            <p class="close" id="close" onclick="closePopup()">close</p>
         </div>
     
     
     <script>
 
-        function closepopup() {
-            var close = document.getElementById("close")
-            var popup = document.getElementById("mydiv")
+        
 
-            popup.style.display = "none"
-        }
         // When the user clicks on <div>, open the popup
-        function myFunction() {
-            var popup = document.getElementById("mydiv");
-            //popup.classList.toggle("show");
+        function openPopup() {
+            let popup = document.getElementById("popup_user");
 
-            var clickme = document.getElementById("popup").getBoundingClientRect()
+            let clickme = document.getElementById("link_user").getBoundingClientRect()
             popup.style.top = clickme.bottom + "px"
             popup.style.left = clickme.left + "px"
-
             popup.style.display = "block"            
 
         }
 
+        function closePopup() {
+            let popup = document.getElementById("popup_user")
+            popup.style.display = "none"
+        }
+
         //Make the DIV element draggagle:
-        dragElement(document.getElementById("mydiv"));
+        dragElement(document.getElementById("popup_user"));
 
         function dragElement(elmnt) {
-             pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
             if (document.getElementById(elmnt.id + "header")) {
                 // if present, the header is where you move the DIV from:
                 document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
@@ -89,7 +84,7 @@
             }
 
             function dragMouseDown(e) {
-                e = e || window.event;
+                e = e || document.event;
                 e.preventDefault();
                 // get the mouse cursor position at startup:
                 pos3 = e.clientX;
@@ -100,7 +95,7 @@
             }
 
             function elementDrag(e) {
-                e = e || window.event;
+                e = e || document.event;
                 e.preventDefault();
                 // calculate the new cursor position:
                 pos1 = pos3 - e.clientX;

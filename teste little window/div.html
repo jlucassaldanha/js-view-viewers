@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        body {
+            font: normal 10pt Arial;
+        }
+
+
+        #popupWindow {
+            color: #EFEFF1;
+            background: #1F1F23;
+        }
+
+        /*Header*/
+        #popupWindowheader {
+            background-image: url("https://static-cdn.jtvnw.net/jtv_user_pictures/streamelements-profile_banner-65f35c599d481279-480.png");
+            background-position: center top; 
+            background-size: cover;
+            background-color: rgb(68, 16, 147);
+        }
+
+        #popupClosearea {
+            text-align: right;
+            height: 30px;
+        }
+
+        #closeButton {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            margin-top: 3px;
+            margin-bottom: 3px;
+            padding: 5px;
+            border-radius: 5px;
+            background: none;
+            border: none;
+            color: #EFEFF1;
+            font-size: medium;
+        }
+        #closeButton:hover {
+            background-color: rgba(255, 255, 255, 0.151);
+        }
+
+        #headerBody {
+            padding: 5px 0px 0px 20px;
+            display: flex;
+        }
+        
+        img {
+            width: 60px;
+            border-radius: 50%;
+        }
+
+        #headerInfo {
+            margin: 8px 10px;
+        }
+
+        #nameLink {
+            text-decoration: none;
+            color: #EFEFF1;
+            font-size: large;
+        }
+
+        #dataCriacao {
+            display: flex;
+        }
+
+        p {
+            margin: 3px 0px 0px 5px;
+        }
+
+        path {
+            fill: #EFEFF1;
+        }
+
+        #abrirPerfilArea {
+            margin: 15px 0px 0px 30px;
+            padding-bottom: 20px;
+            text-align: center;
+        }
+
+        #abrirPerfil {
+            text-decoration: none;
+            color: #EFEFF1;
+            font-size: large;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="popupWindow">
+        <div id="popupWindowheader">
+            <div id="popupClosearea">
+                <button id="closeButton">X</button>
+            </div>
+            
+            <div id="headerBackground">
+                
+                <div id="headerBody">
+                    <div id="profilePic">
+                        <img id="scrProfilepic" src="https://static-cdn.jtvnw.net/jtv_user_pictures/74a96970-cd03-4ca5-89ce-92d8b04813df-profile_image-70x70.png" alt="">
+                    </div>
+                    
+                    <div id="headerInfo">
+                        <a id="nameLink"  href=""><strong>StreamElements</strong></a>
+
+                        <div id="dataCriacao">
+                            <div>
+                                <svg width="20" height="20" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M11 2H9v3H4a2 2 0 0 0-2 2v11h16V7a2 2 0 0 0-2-2h-5V2zM4 16h12v-3.586l-1-1a1.414 1.414 0 0 0-2 0l-.586.586a3.414 3.414 0 0 1-4.828 0L7 11.414a1.414 1.414 0 0 0-2 0l-1 1V16zm10-7c.723 0 1.422.23 2 .647V7H4v2.647A3.414 3.414 0 0 1 8.414 10l.586.586a1.414 1.414 0 0 0 2 0l.586-.586c.64-.64 1.509-1 2.414-1z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <p id="textDataCriacao">Conta criada 21 de agosto de 2015</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="abrirPerfilArea">
+                    <a id="abrirPerfil"><strong>Abrir Perfil</strong></a>
+        </div>
+    </div>
+</body>
+</html>
