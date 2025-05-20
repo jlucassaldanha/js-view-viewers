@@ -125,7 +125,15 @@ def get_viewers_on():
         dt = json.load(db)
     db.close()
 
+    ids = []
+    for id in dt["mods_info"]:
+        ids.append(id)
+
+    for id in dt["viewers_info"]:
+        ids.append(id)
+
     data = {
+        "ids_only" : ids,
         "mods": dt['mods_info'],
         "viewers" : dt['viewers_info'],
         "count" : (len(dt['mods_info']) + len(dt['viewers_info'])),

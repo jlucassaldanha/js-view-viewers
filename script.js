@@ -55,34 +55,9 @@ function show(users, mod_or_user) {
             a.innerHTML = `<strong class="user">${users[user].username}</strong>`
             a.target = "_blank"
             div.appendChild(a)
-
-            if (final.indexOf(users[user].id) == -1) {
-                final.push(users[user].id)
-
-                if (antes.indexOf(users[user].id) == -1) {
-                    antes.push(users[user].id)
-                }
-            }           
-            
-        }
-        
-    }
-
-    for (let a in antes) {
-        console.log("Clean: ", antes[a])
-        if (ids.indexOf(antes[a]) == -1) {
-            let div = document.getElementById(`user_${antes[a]}`)
-            div.remove()
-            let index = final.indexOf(antes[a])
-            final.splice(index, 1)
-            antes.splice(a, 1)
-            
-            console.log("Remove ", antes[a])
         }
     }
 }
-
-
 
 /*
 function verify_for_clean(users, mod_or_user) {
@@ -134,18 +109,16 @@ function show_espectadores() {
 
     document.getElementById("especs").innerHTML = `${viewers_on.count} Espectadores totais`
 
-    ids = viewers_on.ids_only
-
     show(viewers_on.mods, "mod")
     show(viewers_on.viewers, "user")
-
-    console.log("final: " +final)
-    console.log("antes: "+antes)
 }
 
-var ids
-var final = []
-var antes = []
+var updateUsers = {
+    "mods" : [],
+    "viewers" : []
+}
+
+var clean_ids = []
 
 var base_url = "http://localhost:5000/api/"
 
