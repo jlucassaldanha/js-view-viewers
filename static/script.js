@@ -56,6 +56,7 @@ function show(users, mod_or_user) {
             a.target = "_blank"
             div.appendChild(a)
 
+            /*
             if (mod_or_user == "mod") {
                 final_mods.push(users[user].id)
 
@@ -70,11 +71,11 @@ function show(users, mod_or_user) {
                     antes_viewers.push(users[user].id)
                 }
             }
-          
+            */
         }
     }
     
-    if (mod_or_user == "mod") {
+    /*if (mod_or_user == "mod") {
         for (let id in antes_mods) {
             if (users.indexOf(antes_mods[id]) == -1) {
                 let div = document.getElementById(`user_${antes_mods[id]}`)
@@ -97,7 +98,7 @@ function show(users, mod_or_user) {
                 antes_viewers.splice(id, 1)
             }
         }
-    }
+    }*/
 }
 
 function show_espectadores() {
