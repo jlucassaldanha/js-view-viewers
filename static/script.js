@@ -70,33 +70,34 @@ function show(users, mod_or_user) {
                     antes_viewers.push(users[user].id)
                 }
             }
-
-            /*
-            if (final.indexOf(users[user].id) == -1) {
-                final.push(users[user].id)
-
-                if (antes.indexOf(users[user].id) == -1) {
-                    antes.push(users[user].id)
-                }
-            } 
-            */          
+          
         }
     }
     
-    /*
-    for (let a in antes) {
-        console.log("Clean: ", antes[a])
-        if (ids.indexOf(antes[a]) == -1) {
-            let div = document.getElementById(`user_${antes[a]}`)
-            div.remove()
-            let index = final.indexOf(antes[a])
-            final.splice(index, 1)
-            antes.splice(a, 1)
-            
-            console.log("Remove ", antes[a])
+    if (mod_or_user == "mod") {
+        for (let id in antes_mods) {
+            if (users.indexOf(antes_mods[id]) == -1) {
+                let div = document.getElementById(`user_${antes_mods[id]}`)
+                div.remove()
+
+                let index = final_mods.indexOf(antes_mods[id])
+                final_mods.splice(index, 1)
+                antes_mods.splice(id, 1)
+            }
+        }
+    
+    } else if (mod_or_user == "user") {
+        for (let id in antes_viewers) {
+            if (users.indexOf(antes_viewers[id]) == -1) {
+                let div = document.getElementById(`user_${antes_viewers[id]}`)
+                div.remove()
+
+                let index = final_viewers.indexOf(antes_viewers[id])
+                final_viewers.splice(index, 1)
+                antes_viewers.splice(id, 1)
+            }
         }
     }
-    */
 }
 
 function show_espectadores() {
@@ -114,17 +115,16 @@ function show_espectadores() {
     show(viewers_on.mods, "mod")
     show(viewers_on.viewers, "user")
 
+    console.log(final_mods, final_viewers)
+    console.log(antes_mods, antes_viewers)
+
 }
 
-var final = {
-    "mods" : [],
-    "viewers" : []
-}
+var final_mods = []
+var final_viewers = []
 
-var antes = {
-    "mods" : [],
-    "viewers" : []
-}
+var antes_mods = []
+var antes_viewers = []
 
 var base_url = "http://localhost:5000/api/"
 
