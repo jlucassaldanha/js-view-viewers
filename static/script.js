@@ -59,35 +59,43 @@ function show(users, mod_or_user) {
     }
 }
 
+/*
 function verify_for_clean(users, mod_or_user) {
     if (mod_or_user == "mod") {
-        for (let user in updateUsers.mods) {
-            
-            if (users.indexOf(updateUsers.mods[user]) == -1) {
-                clean_ids.push(updateUsers.mods[user].id)
-            } 
+        if (updateUsers.mods.length > 0) {
+            for (let user in updateUsers.mods) {
+                
+                if (users.indexOf(updateUsers.mods[user]) == -1) {
+                    clean_ids.push(updateUsers.mods[user].id)
+                    console.log(updateUsers.mods[user].id)
+                } 
+            }
         }
 
         updateUsers.mods = users
     } else if (mod_or_user == "user") {
-        for (let user in updateUsers.viewers) {
-            
-            if (users.indexOf(updateUsers.viewers[user]) == -1) {
-                clean_ids.push(updateUsers.viewers[user].id)
-            } 
+        if (updateUsers.viewers.length > 0) {
+            for (let user in updateUsers.viewers) {
+                
+                if (users.indexOf(updateUsers.viewers[user]) == -1) {
+                    clean_ids.push(updateUsers.viewers[user].id)
+                    console.log(updateUsers.viewers[user].id)
+                } 
+            }
         }
 
         updateUsers.viewers = users
     }
-
 }
 
 function clean(ids) {
     for (id in ids) {
-        let clean_div = document.getElementById(ids[id])
+        let clean_div = document.getElementById(`user_${ids[id]}`)
+        clean_div.remove()
+        console.log("Remove: " + ids[id])
     }
-    
 }
+*/
 
 function show_espectadores() {
     let secrets_params = `client_id=${client_id}&token=${token}&scopes=${scopes}`
