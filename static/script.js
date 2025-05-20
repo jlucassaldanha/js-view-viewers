@@ -56,49 +56,26 @@ function show(users, mod_or_user) {
             a.target = "_blank"
             div.appendChild(a)
 
-            /*
-            if (mod_or_user == "mod") {
-                final_mods.push(users[user].id)
-
-                if (antes_mods.indexOf(users[user].id) ==  -1) {
-                    antes_mods.push(users[user].id)
-                }
-
-            } else if (mod_or_user == "user") {
-                final_viewers.push(users[user].id)
-
-                if (antes_viewers.indexOf(users[user].id) == -1) {
-                    antes_viewers.push(users[user].id)
-                }
-            }
-            */
         }
     }
-    
-    /*if (mod_or_user == "mod") {
-        for (let id in antes_mods) {
-            if (users.indexOf(antes_mods[id]) == -1) {
-                let div = document.getElementById(`user_${antes_mods[id]}`)
-                div.remove()
+}
 
-                let index = final_mods.indexOf(antes_mods[id])
-                final_mods.splice(index, 1)
-                antes_mods.splice(id, 1)
-            }
-        }
-    
-    } else if (mod_or_user == "user") {
-        for (let id in antes_viewers) {
-            if (users.indexOf(antes_viewers[id]) == -1) {
-                let div = document.getElementById(`user_${antes_viewers[id]}`)
-                div.remove()
+function send_users(users, mod_or_user) {
+    if (mod_or_user == "mod") {
+        const data = { key1: 'value1', key2: 'value2' };
+        const xhr = new XMLHttpRequest();
+        const url = 'your-api-endpoint';
 
-                let index = final_viewers.indexOf(antes_viewers[id])
-                final_viewers.splice(index, 1)
-                antes_viewers.splice(id, 1)
-            }
+        xhr.open('POST', url, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            const json = JSON.parse(xhr.responseText);
+            console.log(json);
         }
-    }*/
+        };
+        xhr.send(JSON.stringify(data));
+    }
 }
 
 function show_espectadores() {
@@ -120,12 +97,6 @@ function show_espectadores() {
     console.log(antes_mods, antes_viewers)
 
 }
-
-var final_mods = []
-var final_viewers = []
-
-var antes_mods = []
-var antes_viewers = []
 
 var base_url = "http://localhost:5000/api/"
 
