@@ -1,5 +1,6 @@
 from flask import Flask, render_template, make_response, jsonify, request
 from mytwitchapi import Basics, OAuth
+import json
 
 
 app = Flask(__name__)
@@ -128,11 +129,28 @@ def get_viewers_on():
     
     return make_response(jsonify(data))
 
+@app.route("/api/saved_viewers", methods=['POST', "GET"])
+def saved_viewers():
+    if request.method == "POST":
+        data = request.json
+
+        with open("viewers.json", "w", encoding="UTF-8") as json_file:
+            json.dump(data, json_file, indent=4, ensure_ascii=False)
+        json_file.close()
+
+        return make_response(jsonify(data))
+
+    elif request.method == "GET":
+        with open("viewers.json", "r", encoding="UTF-8") as json_file:
+            data = json.load(json_file)
+        json_file.close()
+
+        return make_response(jsonify(data))
+
 @app.route("/views")
 def views():
     return render_template("index.html")
 
- 
 
 if __name__ == "__main__":
     

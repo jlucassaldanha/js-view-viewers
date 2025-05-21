@@ -6,6 +6,21 @@ function Get(url) {
     return request.responseText
 }
 
+function Post(url, json_data) {
+    let request = new XMLHttpRequest()
+    
+    request.open('POST', url, true)
+    request.setRequestHeader('Content-Type', 'application/json')
+    request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+            let json = JSON.parse(request.responseText)
+            console.log(json)
+        }
+    }
+
+    request.send(JSON.stringify(json_data))
+}
+
 function creds() {
     let secrets = JSON.parse(Get(`${base_url}credentials`))
 
@@ -60,25 +75,35 @@ function show(users, mod_or_user) {
     }
 }
 
-function send_users(users, mod_or_user) {
-    if (mod_or_user == "mod") {
-        const data = { key1: 'value1', key2: 'value2' };
-        const xhr = new XMLHttpRequest();
-        const url = 'your-api-endpoint';
+function send_users(users) {
+    Post(`${base_url}saved_viewers`, {"ids":users})
+}
 
-        xhr.open('POST', url, true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            const json = JSON.parse(xhr.responseText);
-            console.log(json);
+function pop(readed_users, users) {
+    for (let user in readed_users) {
+        if (users.indexOf(readed_users[user]) == -1) {
+            console.log(`Deve ser removido: ${readed_users[user]}`)
+            
+            let div = document.getElementById(`user_${readed_users[user]}`)
+            div.remove()
         }
-        };
-        xhr.send(JSON.stringify(data));
     }
 }
 
-function show_espectadores() {
+function get_ids(users) {
+    let ids = []
+    for (let mod in users.mods) {
+        ids.push(users.mods[mod].id)
+    }
+
+    for (let viewer in users.viewers) {
+        ids.push(users.viewers[viewer].id)
+    }
+
+    return ids
+}
+
+function update_espectadores() {
     let secrets_params = `client_id=${client_id}&token=${token}&scopes=${scopes}`
 
     let broadcaster_id = 459116718
@@ -88,17 +113,24 @@ function show_espectadores() {
         Get(`${base_url}get_viewers_on?${secrets_params}&${query_params}`)
     )
 
+    let readed_users = JSON.parse(Get(`${base_url}saved_viewers`))
+
     document.getElementById("especs").innerHTML = `${viewers_on.count} Espectadores totais`
 
     show(viewers_on.mods, "mod")
     show(viewers_on.viewers, "user")
 
-    console.log(final_mods, final_viewers)
-    console.log(antes_mods, antes_viewers)
+    let users_ids = get_ids(viewers_on) 
+
+    pop(readed_users.ids, users_ids)
+    
+    send_users(users_ids)
 
 }
 
 var base_url = "http://localhost:5000/api/"
+
+send_users([])
 
 var token = null
 var client_id = null
@@ -109,11 +141,11 @@ console.log("Incio")
 
 creds()
 console.log("creds")
-show_espectadores()
+update_espectadores()
 console.log("show")
 
 setInterval(creds, 600000)
-setInterval(show_espectadores, 60000)
+setInterval(update_espectadores, 60000)
 
 console.log("main")
 
