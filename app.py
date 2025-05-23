@@ -108,18 +108,38 @@ def get_viewers_on():
     
     mods_users = [mod['user_name'] for mod in mods]
     viewers_users = list(set(viewers_users) - set(mods_users))
-
-    viewers_count = str(len(all_viewers_ids))
-
+    
     users_mods = api.Get_Users(mods_users)
-    mods_info = [{"username" : user_mod['display_name'], 
+    #mods_info = [{"username" : user_mod['display_name'], "id" : user_mod['id'] , "profile_img_url" : user_mod['profile_image_url']} for user_mod in users_mods if user_mod['display_name'] != "ojoojao" and user_mod['display_name'] != "StreamElements" and user_mod['display_name'] != "Nightbot"]
+    mods_info = []
+    for user_mod in users_mods:
+        if (
+            user_mod['display_name'] != "StreamElements" and 
+            user_mod['display_name'] != "ojoojao" and
+            user_mod['display_name'] != "Nightbot"
+                                                    ):
+            mods_info.append({
+                "username" : user_mod['display_name'], 
                 "id" : user_mod['id'] , 
-                "profile_img_url" : user_mod['profile_image_url']} for user_mod in users_mods]
+                "profile_img_url" : user_mod['profile_image_url']
+            })
 
     users_viewers = api.Get_Users(viewers_users)
-    viewers_info = [{"username" : user_viewer['display_name'], 
-                    "id" : user_viewer['id'],
-                    "profile_img_url" : user_viewer['profile_image_url']} for user_viewer in users_viewers]
+    #viewers_info = [{"username" : user_viewer['display_name'], "id" : user_viewer['id'], "profile_img_url" : user_viewer['profile_image_url']} for user_viewer in users_viewers if user_viewer['display_name'] != "ojoojao" and user_viewer['display_name'] != "StreamElements" and user_viewer['display_name'] != "Nightbot"]
+    viewers_info = []
+    for user_viewer in users_viewers:
+        if (
+            user_viewer['display_name'] != "StreamElements" and 
+            user_viewer['display_name'] != "ojoojao" and
+            user_viewer['display_name'] != "Nightbot"
+                                                    ):
+            viewers_info.append({
+                "username" : user_viewer['display_name'], 
+                "id" : user_viewer['id'] , 
+                "profile_img_url" : user_viewer['profile_image_url']
+            })
+
+    viewers_count = len(mods_info) + len(viewers_info)
 
     data = {
         "mods": mods_info,

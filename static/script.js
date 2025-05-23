@@ -145,7 +145,7 @@ update_espectadores()
 console.log("show")
 
 setInterval(creds, 600000)
-setInterval(update_espectadores, 60000)
+setInterval(update_espectadores, 15000)
 
 console.log("main")
 
