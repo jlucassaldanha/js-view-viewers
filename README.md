@@ -5,7 +5,7 @@
 [![Flask](https://img.shields.io/badge/Flask-API-black?logo=flask)](https://flask.palletsprojects.com/en/stable/)
 
 ## 📌 Sobre o projeto
-O **JS View Viewers** é a primeira versão da aplicação web que consome a **API da Twitch** para exibir informações visualizações em live.  
+O **JS View Viewers** é a primeira versão da aplicação web que consome a **API da Twitch** para exibir visualizações da minha stream..  
 O projeto foi desenvolvido como forma de **praticar o uso de JavaScript, consumo e desenvolvimento de APIs** a principio configurado apenas para a minha conta da Twitch.
 
 🔹 Este projeto passou por **3 versões de evolução**:
