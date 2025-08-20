@@ -1,4 +1,4 @@
-# 🎮 View Viewers
+# 🎮 JS View Viewers
 
 [![JavaScript](https://shields.io/badge/JavaScript-ES6-f7df1e?logo=JavaScript)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 [![Python](https://shields.io/badge/Python-13-3670a0?logo=python)](https://python.org/)
